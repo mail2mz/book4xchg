@@ -91,7 +91,7 @@ class App extends Component {
       }
     });
 
-    axios.post('/api/updateData', {
+    axios.post('http://localhost:3001/api/updateData', {
       id: objIdToUpdate,
       update: { message: updateToApply },
     });

@@ -6,7 +6,7 @@ const logger = require('morgan');
 const Data = require('./data');
 const path = require('path');
 
-const API_PORT = process.env.port || 3001;
+const API_PORT = 3001;
 const app = express();
 app.use(cors());
 const router = express.Router();
@@ -95,5 +95,6 @@ app.use('/api', router);
   		res.sendFile(path.join(__dirname+'/client/build/index.html'));
 	});
 
+const port = process.env.PORT || API_PORT;
 // launch our backend into a port
-app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
+app.listen(port, () => console.log(`LISTENING ON PORT ${API_PORT}`));

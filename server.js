@@ -43,9 +43,9 @@ router.get('/getData', (req, res) => {
 // this is our update method
 // this method overwrites existing data in our database
 router.post('/updateData', (req, res) => {
-  const { id, update } = req.body;
+  const { id, book_name, update } = req.body;
 
-  Data.findByIdAndUpdate(id, update, (err) => {
+  Data.findByIdAndUpdate(id, book_name, update, (err) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
   });
@@ -68,7 +68,7 @@ router.delete('/deleteData', (req, res) => {
 router.post('/putData', (req, res) => {
   let data = new Data();
 
-  const { id, message } = req.body;
+  const { id, book_name, message } = req.body;
 
   if ((!id && id !== 0) || !message) {
     return res.json({
@@ -76,6 +76,8 @@ router.post('/putData', (req, res) => {
       error: 'INVALID INPUTS',
     });
   }
+  data.book_name = book_name;
+  data.id = id;
   data.message = message;
   data.id = id;
   data.save((err) => {
